@@ -1,0 +1,363 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>无标题文档</title>
+<style type="text/css">
+
+#listp1{
+	list-style-type: none;
+	margin-top:0px;
+	margin-left:10px;
+	background:#181818;
+	height:30px;
+	width:280px;
+	padding:0px;
+	font-size:20px;
+	font-style:inherit;
+	text-align:center;
+	color:#FFFFFF;
+	line-height:30px;
+	
+}
+#listp2{
+	list-style-type: none;
+	margin-top:5px;
+	margin-left:10px;
+	background:#181818;
+	height:30px;
+	width:250px;
+	padding:0px;
+	font-size:20px;
+	font-style:inherit;
+	text-align:center;
+	color:#FFFFFF;
+	line-height:30px;
+}
+#listp3{
+	list-style-type: none;
+	margin-top:5px;
+	margin-left:10px;
+	background:#181818;
+	height:30px;
+	width:230px;
+	padding:0px;
+	font-size:20px;
+	font-style:inherit;
+	text-align:center;
+	color:#FFFFFF;
+	line-height:30px;
+}
+#addin{
+	background-image:url(img/background1.jpg);
+ 	width:941px; 
+ 	height:433px;
+	float:right;
+
+}
+#li1{
+	float:left;
+	list-style:none;	
+	color:#FF0000;
+	padding:10px;
+	margin-right:15px;
+	cursor:pointer;
+	
+}
+#li2{
+	float:left;
+	list-style:none;	
+	color:#FFFFFF;
+	padding:10px;
+	margin-right:15px;
+	cursor:pointer;
+	
+}
+#li3{
+	float:left;
+	list-style:none;	
+	color:#FFFFFF;
+	padding:10px;
+	margin-right:15px;
+	cursor:pointer;
+	
+}
+#addinList{
+	width:200px;
+	height:20px;
+	margin-left:700px;
+	margin-top:350px;
+	float:left;
+}
+#button1{
+	height:40px;
+	width:200px;
+	margin-left:50px;
+	font-size:18px;
+	background-color:#FF0000;
+	color:#FFFFFF;
+	text-align:center;}
+#button2{
+	height:40px;
+	width:200px;
+	margin-left:50px;
+	font-size:18px;
+	background-color:#FF0000;
+	color:#FFFFFF;
+	text-align:center;}
+	
+#button3{
+	height:40px;
+	width:200px;
+	margin-left:50px;
+	font-size:18px;
+	background-color:#FF0000;
+	color:#FFFFFF;
+	text-align:center;}
+#list1{
+	boder:0px;
+	margin-left:20px;
+	margin-top:530px;
+	height:200px;
+	width:350px;
+	position:absolute;
+	z-index:2;
+	display:block;
+}
+#list2{
+	boder:0px;
+	margin-left:20px;
+	margin-top:530px; 
+	height:200px;
+	width:350px;
+	position:absolute;
+	z-index:1;
+	display:block;
+
+}
+#list3{
+	boder:0px;
+ 	margin-left:20px;
+	margin-top:530px;
+	height:250px;
+	width:350px;
+	position:absolute;
+	z-index:1;
+	display:block;
+	
+
+}
+#img1{
+position:absolute;
+z-index:2;
+top:1px;
+display:block;
+Opacity:1;
+}
+#img2{
+position:absolute;
+z-index:;
+top:1px;
+display:none;
+Opacity:1;
+}
+#img3{
+position:absolute;
+z-index:1;
+top:1px;
+display:none;
+Opacity:1;
+}
+</style>
+
+</head>
+
+<body onload="show(1);" style="width:941px;height:1200px;margin:auto;">
+<script language="javascript">
+ var ss_ListHidden,tt_Imgmove,xx_ListDisplay,flag;
+ 
+ //背景图片移动出现 循环调用位置移动
+function moveImg(id,preid){
+	flag=0;
+	var objDisplay=document.getElementById(id);
+	var objHidden=document.getElementById(preid);
+	objDisplay.style.opacity="0";
+	objDisplay.style.top="-435px";
+	objHidden.style.top="0px";
+	objHidden.style.opacity="1";
+	objHidden.style.display="block";
+	clearInterval(tt_Imgmove);
+	//alert(id);
+	tt_Imgmove=setInterval("Imgmove('"+id+"','"+preid+"')",5);
+}
+//背景图片移动循环体
+function Imgmove(id,preid){
+	var objDisplay=document.getElementById(id);
+	var objHidden=document.getElementById(preid);
+	objDisplay.style.display="block";
+	var n =parseInt(objDisplay.style.top);
+	var m =parseInt(objHidden.style.top);
+		
+	if(n<0){
+	 	objDisplay.style.top=n+5+"px";
+		if(objDisplay.style.opacity<=1){
+		objDisplay.style.opacity=(objDisplay.style.opacity*100+1)/100;
+		//alert(objDisplay.style.opacity);
+		}
+	}
+	else{
+		flag=1;
+		//alert(flag);
+		clearInterval(tt_Imgmove);
+	}
+	if(m<433){
+	 	objHidden.style.top=m+5+"px";
+		if(objHidden.style.opacity>0){
+		objHidden.style.opacity=(objHidden.style.opacity*100-1)/100;}
+			}
+}
+ // 列表移动出现 循环调用位置移动
+function ListDisplay(id){
+	var obj=document.getElementById(id);
+	obj.style.display="block";
+	obj.style.marginTop="432px";
+	clearInterval(xx_ListDisplay);
+	//alert(id);
+	xx_ListDisplay=setInterval("Listmove('"+id+"')",20);
+}
+//列表移动出现循环体
+function Listmove(id){
+	var obj=document.getElementById(id);
+//	alert(id);
+	var n =parseInt(obj.style.marginTop);
+	
+	 if(flag==1){
+	 	if( n>230){
+	 	obj.style.marginTop=n-10+"px";
+			}
+		else{
+		clearInterval(xx_ListDisplay);}
+	}
+	//alert(n);
+ }
+ //列表移动隐藏 循环调用位置移动
+var flagListHidden;
+function ListHidden(id){
+	flagListHidden=0;
+	var obj=document.getElementById(id);
+	obj.style.display="block";
+	obj.style.marginTop="230px";
+	clearInterval(ss_ListHidden);
+	//alert(id);
+	ss_ListHidden=setInterval("Pre_ListHidden('"+id+"')",20);
+}
+ //列表移动隐藏循环体
+function Pre_ListHidden(id){
+	var obj=document.getElementById(id);
+//	alert(id);
+	var n =parseInt(obj.style.marginTop);
+	
+	 if(n<435){
+	 	obj.style.marginTop=n+20+"px";
+			}
+	else{
+		flagListHidden=1;
+		clearInterval(ss_ListHidden);}
+	//alert(n);
+ }
+ 
+ //设置 图片对应按钮颜色
+function IndexId(id,color){
+	for (var i=1;i<=3;i++){
+	document.getElementById("li"+i).style.color="#FFFFFF";}
+	document.getElementById(id).style.color=color;
+}
+ 
+ 
+ //图片切换
+ function change(i){
+  //alert("img"+show_flag);
+     IndexId("li"+i,"#FF0000");	 
+	 if(show_flag==0 || show_flag==i){
+		   document.getElementById("img"+i).style.display="block";
+		   document.getElementById("list"+i).style.marginTop="222px";
+	   }else{
+		   ListHidden("list"+show_flag);
+		   moveImg("img"+i,"img"+show_flag);	 
+		   ListDisplay("list"+i);}
+  }
+
+//调用循环切换函数
+var show_t,show_flag;
+show_flag=0;
+function show(i){
+	if (i>3){
+		i=1;}
+	change(i);
+	show_flag=i;
+	i=i+1;
+	show_t=window.setTimeout("show("+i+")",4000);	
+}
+//手动切换图片
+function clickChange(i){
+	window.clearTimeout(show_t);
+	show(i);	
+}
+
+//鼠标指向按钮，按钮颜色变化
+function mouseOver(id)
+{
+	obj=document.getElementById(id);
+	obj.style.backgroundColor="#181818";
+}
+//鼠标离开按钮，按钮颜色变化
+function mouseOut(id)
+{
+	obj=document.getElementById(id);
+	obj.style.backgroundColor="#FF0000";
+}
+
+</script>
+
+		<div style="width:941px;height:432px;position:absolute;z-index:1;overflow:hidden;">
+					<img src="img/background1.jpg" id="img1"/>
+					<img src="img/background2.jpg" id="img2"/>
+					<img src="img/background3.jpg" id="img3"/>				
+		</div>
+		<div style="width:941px;height:432px;position:absolute;z-index:2;overflow:hidden;boder:0px;">
+				<div id="list1">
+						<ul>	
+							<li id="listp1">Set Your Imagination Free!</li>
+							<li id="listp2">Register Now : Quarter 4</li>	
+							<li id="listp3">Classes Start March 25</li>					
+						</ul>
+						<input id="button1" type="button" value="LEARN MORE  —>" onmouseover="mouseOver('button1');" onmouseout="mouseOut('button1');">
+				</div>
+				<div id="list2">
+						<ul >	
+							<li id="listp1" style="width:400px;">2012 National Academicians:Excellence</li>
+							<li id="listp2" style="width:220px;">in American Art and</li>	
+							<li id="listp3" style="width:150px;">Architecture</li>						
+						</ul>
+						<input id="button2" type="button" value="BUY CHE  —> " onmouseover="mouseOver('button2');" onmouseout="mouseOut('button2');">
+				</div>
+				<div id="list3">
+						<ul >	
+							<li id="listp1" style="width:330px;">Seismic Shifts:10 Visionaries in</li>
+							<li id="listp2" style="width:350px;">Contemporary Art and Architecture</li>	
+							<li id="listp3" style="font-size: 10px;width:250px;">"January 31.2013 to May 5.2013.11 AM-6PM</li>					
+						</ul>
+						<input id="button3" type="button" value="BUY CI   —>" onmouseover="mouseOver('button3');" onmouseout="mouseOut('button3');">
+				</div>
+			<div id="addinList">
+				<ul>
+					<li id="li1" onclick="clickChange(1);">●</li>
+					<li id="li2" onclick="clickChange(2);">●</li>
+					<li id="li3" onclick="clickChange(3);">●</li>
+				</ul>
+				
+			</div>
+	  </div>
+
+</body>
+</html>
